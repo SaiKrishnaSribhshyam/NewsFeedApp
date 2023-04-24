@@ -23,6 +23,7 @@ public class Main {
                 break;
             String[] commandLine=command.split(" ");
             try {
+
                 commandExecutorFactory.getCommandExecutor(NewsFeedCommand.valueOf(commandLine[0])).execute(commandLine);
             }  catch (BadCommandException | UserAlreadyExistsException | InvalidPostException | InvalidUserException e) {
                 System.out.println(e.getMessage());

@@ -1,11 +1,28 @@
 package com.flipkart.UserService;
 
+import com.flipkart.PostService.Post;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class User {
     private String userName;
+    private List<User> followees;
+    private List<Post> posts;
+
+    public List<User> getFollowees() {
+        return followees;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
     private User(UserBuilder userBuilder){
         this.userName= userBuilder.userName;
+        followees=new ArrayList<User>();
+        posts=new ArrayList<Post>();
     }
 
     public String getUserName() {

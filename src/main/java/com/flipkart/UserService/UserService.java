@@ -1,5 +1,7 @@
 package com.flipkart.UserService;
 
+import com.flipkart.PostService.Post;
+
 public class UserService {
     private UserRepo userRepo;
     private User activeUser;
@@ -20,10 +22,7 @@ public class UserService {
     }
 
     public boolean isUserExists(String userName){
-        User user=new User.UserBuilder()
-                .setUserName(userName)
-                .buildUser();
-        return userRepo.isUserPresent(user);
+        return userRepo.isUserPresent(userName);
     }
 
     public void addUser(String userName){
@@ -37,7 +36,16 @@ public class UserService {
         return activeUser;
     }
 
-    public void setActiveUser(User activeUser) {
-        this.activeUser = activeUser;
+    public void setActiveUser(String userName) {
+        if(isUserExists(userName))
+           this.activeUser = userRepo.getUser(userName);
+    }
+
+    public void addFollowee(User followee){
+        activeUser.getFollowees().add(followee);
+    }
+
+    public void addPost(Post post){
+        activeUser.getPosts().add(post);
     }
 }
