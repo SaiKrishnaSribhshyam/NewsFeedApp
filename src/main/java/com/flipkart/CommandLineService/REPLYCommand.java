@@ -12,8 +12,10 @@ import com.flipkart.Utils.PostHelper;
 
 public class REPLYCommand extends ICommand{
     private PostService postService;
+    private UserService userService;
     public REPLYCommand(){
         postService=PostService.getInstance();
+        userService=UserService.getInstance();
     }
 
     @Override
@@ -26,9 +28,8 @@ public class REPLYCommand extends ICommand{
 
         String text= PostHelper.getText(command,2);
         Post post=new Post(text);
+        post.setUser(userService.getActiveUser());
         postService.savePost(post);
         originalPost.addComment(post);
     }
-
-
 }

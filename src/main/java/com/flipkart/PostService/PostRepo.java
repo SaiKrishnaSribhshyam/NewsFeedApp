@@ -1,5 +1,7 @@
 package com.flipkart.PostService;
 
+import com.flipkart.Exceptions.InvalidPostException;
+
 import java.util.HashMap;
 
 public class PostRepo {
@@ -28,9 +30,9 @@ public class PostRepo {
         return nextId++;
     }
 
-    public Post getPost(int id){
+    public Post getPost(int id) throws InvalidPostException {
         if(posts.containsKey(id))
             return posts.get(id);
-        return null;
+        throw new InvalidPostException("No post exists with given post Id");
     }
 }

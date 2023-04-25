@@ -23,6 +23,7 @@ public class POSTCommand extends ICommand{
         String text= PostHelper.getText(command,1);
         User loggedInUser=userService.getActiveUser();
         Post post=new Post(text);
+        post.setUser(userService.getActiveUser());
         postService.savePost(post);
         userService.addPost(post);
     }

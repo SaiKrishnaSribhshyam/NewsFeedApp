@@ -1,5 +1,7 @@
 package com.flipkart.PostService;
 
+import com.flipkart.Exceptions.InvalidPostException;
+
 public class PostService {
     private PostRepo postRepo;
     private static PostService postServiceInstance;
@@ -29,7 +31,7 @@ public class PostService {
         post.addComment(comment);
     }
 
-    public Post getPost(int id){
+    public Post getPost(int id) throws InvalidPostException {
         return postRepo.getPost(id);
     }
 }

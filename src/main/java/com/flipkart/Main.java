@@ -10,9 +10,10 @@ import com.flipkart.Exceptions.UserAlreadyExistsException;
 import java.util.Scanner;
 
 public class Main {
-    private static final CommandExecutorFactory commandExecutorFactory=new CommandExecutorFactory();
+    private static final CommandExecutorFactory commandExecutorFactory=CommandExecutorFactory.getInstance();
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        String str="\t welcome";
+        System.out.println(str);
 
         Scanner cin=new Scanner(System.in);
         System.out.println("Select your option, type exit once done");
@@ -23,8 +24,7 @@ public class Main {
                 break;
             String[] commandLine=command.split(" ");
             try {
-
-                commandExecutorFactory.getCommandExecutor(NewsFeedCommands.valueOf(commandLine[0])).execute(commandLine);
+                commandExecutorFactory.getCommandExecutor(NewsFeedCommands.valueOf(commandLine[0].toUpperCase())).execute(commandLine);
             }  catch (BadCommandException | UserAlreadyExistsException | InvalidPostException | InvalidUserException e) {
                 System.out.println(e.getMessage());
             }
