@@ -32,6 +32,10 @@ public class UserService {
         userRepo.addUser(user);
     }
 
+    public User getUser(String userName){
+       return userRepo.getUser(userName);
+    }
+
     public User getActiveUser() {
         return activeUser;
     }

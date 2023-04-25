@@ -1,7 +1,7 @@
 package com.flipkart;
 
 import com.flipkart.CommandLineService.CommandExecutorFactory;
-import com.flipkart.CommandLineService.NewsFeedCommand;
+import com.flipkart.CommandLineService.NewsFeedCommands;
 import com.flipkart.Exceptions.BadCommandException;
 import com.flipkart.Exceptions.InvalidPostException;
 import com.flipkart.Exceptions.InvalidUserException;
@@ -24,7 +24,7 @@ public class Main {
             String[] commandLine=command.split(" ");
             try {
 
-                commandExecutorFactory.getCommandExecutor(NewsFeedCommand.valueOf(commandLine[0])).execute(commandLine);
+                commandExecutorFactory.getCommandExecutor(NewsFeedCommands.valueOf(commandLine[0])).execute(commandLine);
             }  catch (BadCommandException | UserAlreadyExistsException | InvalidPostException | InvalidUserException e) {
                 System.out.println(e.getMessage());
             }
