@@ -8,6 +8,7 @@ import com.flipkart.PostService.Post;
 import com.flipkart.PostService.PostService;
 import com.flipkart.UserService.User;
 import com.flipkart.UserService.UserService;
+import com.flipkart.Utils.PostHelper;
 
 import java.util.List;
 import java.util.PriorityQueue;
@@ -43,7 +44,7 @@ public class SHOWNEWSFEEDCommand extends ICommand{
         System.out.println(indents +"Posted By:"+post.getUser().getUserName());
         System.out.println(indents +post.getText());
         System.out.println(indents +post.getUpvotes().size()+ " UpVotes,"+post.getDownvotes().size()+" DownVotes");
-        System.out.println(indents +post.getTimeStamp());
+        System.out.println(indents + PostHelper.getTimeInLanguage(post.getTimeStamp()));
 
         for(Post comment:post.getComments()){
             printPost(comment,indentationLevel+1);
