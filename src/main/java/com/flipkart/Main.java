@@ -17,13 +17,23 @@ public class Main {
 
         Scanner cin=new Scanner(System.in);
         System.out.println("Select your option, type exit once done");
+        System.out.println("Valid Commands");
+        System.out.println("SIGNUP LOGIN FOLLOW POST REPLY UPVOTE DOWNVOTE SHOWNEWSFEED");
         while(true){
             System.out.print("NewsFeedApp>");
             String command=cin.nextLine();
             if(command.equals("exit"))
                 break;
             String[] commandLine=command.split(" ");
+            boolean isValidCommand=false;
+            for(NewsFeedCommands keyword:NewsFeedCommands.values()){
+                if(commandLine[0].toUpperCase().equals(keyword.toString()) && commandLine.length>=keyword.getMinimumLength()){
+                    isValidCommand=true;
+                }
+            }
             try {
+                if(!isValidCommand)
+                    throw new BadCommandException("Command Incorrect, try again!");
                 commandExecutorFactory.getCommandExecutor(NewsFeedCommands.valueOf(commandLine[0].toUpperCase())).execute(commandLine);
             }  catch (BadCommandException | UserAlreadyExistsException | InvalidPostException | InvalidUserException e) {
                 System.out.println(e.getMessage());
